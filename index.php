@@ -18,6 +18,7 @@ catch(PDOException $e)
   <head>
     <meta charset="utf-8">
     <script src="jquery-3.2.1.min.js" charset="utf-8"></script>
+    <link rel="icon" href="phone-icon-946.png">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -48,7 +49,7 @@ catch(PDOException $e)
         </tr>
       </thead>
       <?php foreach ($result as $value) {
-        if ($value['sede'] == 'Bs As') {
+        if ($value['sede'] == 'Cerrito') {
           echo '<tr onclick="interno(' . $value['id'] . ')" class="BsAs">';
         } else {
           echo '<tr onclick="interno(' . $value['id'] . ')" class="Pilar">';
@@ -84,8 +85,10 @@ catch(PDOException $e)
              <div class="form-group">
                <label for="sede">Sede*</label>
                <select class="form-control" name="sede" id="sede" required>
-                 <option value="Bs As">Bs As</option>
+                 <option value="Cerrito">Cerrito</option>
                  <option value="Pilar">Pilar</option>
+                 <option value="FCB">FCB</option>
+                 <option value="Rosario">Rosario</option>
                </select>
              </div>
              <div class="form-group">

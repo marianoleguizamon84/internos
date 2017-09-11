@@ -1,3 +1,15 @@
+window.onload = function(event){
+  var tabla = document.getElementsByTagName('tbody');
+  var largo = window.innerHeight - 160;
+  tabla[0].style.height = largo + "px";
+}
+
+window.onresize = function(event){
+  var tabla = document.getElementsByTagName('tbody');
+  var largo = window.innerHeight - 160;
+  tabla[0].style.height = largo + "px";
+}
+
 function nuevo(){
   document.getElementById('formu').action = "nuevo.php";
   document.getElementById('interno').value = "";

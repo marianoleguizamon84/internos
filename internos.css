@@ -1,5 +1,6 @@
 h1{
   text-align: center;
+  height: 40px;
 }
 
 .botonera{
@@ -25,6 +26,8 @@ h1{
 /*Titulo Fijo*/
 table{
   width: 100%;
+  /*position: absolute;*/
+  /*bottom:0px;*/
 }
 
 thead, tbody, tr, td, th { display: block;}
@@ -41,7 +44,7 @@ thead th{
 }
 
 tbody{
-  height: 400px;
+  height: 700px;
   overflow-y: auto;
 }
 
@@ -54,7 +57,7 @@ thead{
   float: left;
 }
 .usuario{
-  width: 40%;
+  width: 25%;
   float: left;
 }
 
