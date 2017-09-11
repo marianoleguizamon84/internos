@@ -1,0 +1,105 @@
+h1{
+  text-align: center;
+}
+
+.botonera{
+  height: 30px;
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 5px;
+}
+
+.botonera input{
+  margin: 0px 5px;
+  width: 35%;
+  display: inline;
+  padding-left: 10px;
+}
+
+.botonera button{
+  height: 35px;
+  padding: 0px 15px;
+  margin-right: 5px;
+}
+
+/*Titulo Fijo*/
+table{
+  width: 100%;
+}
+
+thead, tbody, tr, td, th { display: block;}
+
+tr:after{
+  content: ' ';
+  display: block;
+  visibility: hidden;
+  clear: both;
+}
+
+thead th{
+  height: 35px;
+}
+
+tbody{
+  height: 400px;
+  overflow-y: auto;
+}
+
+thead{
+  /*fallback*/
+}
+
+.interno, .sede{
+  width: 10%;
+  float: left;
+}
+.usuario{
+  width: 40%;
+  float: left;
+}
+
+form{
+  margin-left: 25px;
+  margin-right: 25px;
+}
+
+
+
+@media only screen and (max-width: 500px) {
+  body{
+    font-size: 2em;
+  }
+  .BsAs{
+    color: #e46c6c;
+  }
+
+  .Pilar{
+    color: #6161bb;
+  }
+
+  .movil{
+    display: none;
+  }
+
+  /*Titulo Fijo*/
+  thead th{
+    height: 40px;
+  }
+
+  .usuario{
+    width: 70%;
+    float: left;
+  }
+
+  .interno{
+    width: 30%;
+    float: left;
+  }
+  .botonera{
+    margin-bottom: 0px;
+  }
+
+  .botonera input{
+    width: 100%;
+  }
+}
