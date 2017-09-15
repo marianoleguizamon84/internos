@@ -14,5 +14,4 @@ catch(PDOException $e)
     $conn = null;
     header("Location: index.php");
     die();
-
  ?>

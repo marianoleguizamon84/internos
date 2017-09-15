@@ -1,5 +1,14 @@
 <?php
 require 'config.php';
+require 'function.php';
+session_start();
+$admin = false;
+
+if (isset($_SESSION['user'])) {
+  $admin = true;
+}
+
+// die($admin);
 
 try {
     $conn = new PDO("mysql:host=$servername;dbname=$dbname; charset=UTF8", $username, $password);
@@ -37,7 +46,9 @@ catch(PDOException $e)
     <h1><a href="index.php">Listado Internos</a></h1>
     <div class="botonera">
       <input type="text" class="form-control" placeholder="Buscar interno, usuario, etc." onkeyup="buscar()" id="buscar">
-      <button type="button" class="btn btn-default btn-lg" onclick="nuevo()" id="nuevo">Nuevo</button>
+      <?php if ($admin): ?>
+        <button type="button" class="btn btn-default btn-lg" onclick="nuevo()" id="nuevo">Nuevo</button>
+      <?php endif; ?>
     </div>
     <table class='table table-striped'>
       <thead>
@@ -49,7 +60,7 @@ catch(PDOException $e)
         </tr>
       </thead>
       <?php foreach ($result as $value) {
-        if ($value['sede'] == 'Cerrito') {
+        if ($value['sede'] == 'Bs As') {
           echo '<tr onclick="interno(' . $value['id'] . ')" class="BsAs">';
         } else {
           echo '<tr onclick="interno(' . $value['id'] . ')" class="Pilar">';
@@ -72,33 +83,36 @@ catch(PDOException $e)
            <h4 class="modal-title" id="myModalLabel">Interno Nuevo</h4>
          </div>
          <div class="modal-body">
-           <form class="" action="" method="post" id="formu">
-             <!-- {{ csrf_field() }} -->
+           <form class="formu" action="" method="post" id="formu">
              <div class="form-group">
                <label for="interno">Interno*</label>
-               <input type="number" class="form-control" placeholder="Interno" name="interno" value="" id="interno" min="1000" max="9999" required>
+               <input type="number" class="form-control" placeholder="Interno" name="interno" value="" id="interno" min="1000" max="9999" required <?php echo !$admin ? "readonly" : "" ?>>
              </div>
              <div class="form-group">
                <label for="usuario">Usuario*</label>
-               <input type="text" class="form-control" placeholder="Usuario" name="usuario" value="" id="usuario" required>
+               <input type="text" class="form-control" placeholder="Usuario" name="usuario" value="" id="usuario" required <?php echo !$admin ? "readonly" : "" ?>>
              </div>
              <div class="form-group">
                <label for="sede">Sede*</label>
-               <select class="form-control" name="sede" id="sede" required>
-                 <option value="Cerrito">Cerrito</option>
-                 <option value="Pilar">Pilar</option>
-                 <option value="FCB">FCB</option>
-                 <option value="Rosario">Rosario</option>
+               <select class="form-control" name="sede" id="sede" required <?php echo !$admin ? "readonly" : "" ?>>
+                 <option value="Bs As" <?php echo !$admin ? 'disabled' : '' ?>>Bs As</option>
+                 <option value="Pilar" <?php echo !$admin ? 'disabled' : '' ?>>Pilar</option>
+                 <option value="FCB" <?php echo !$admin ? 'disabled' : '' ?>>FCB</option>
+                 <option value="Rosario" <?php echo !$admin ? 'disabled' : '' ?>>Rosario</option>
                </select>
              </div>
              <div class="form-group">
                <label for="observaciones">Observaciones</label>
-               <input type="" class="form-control" placeholder="Observaciones" name="observaciones" value="" id="observaciones">
+               <input type="" class="form-control" placeholder="Observaciones" name="observaciones" value="" id="observaciones" <?php echo !$admin ? "readonly" : "" ?>>
              </div>
          </div>
          <div class="modal-footer">
-           <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-           <button type="submit" class="btn btn-primary">Guardar</button>
+           <?php if ($admin): ?>
+             <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+             <button type="submit" class="btn btn-primary">Guardar</button>
+           <?php else: ?>
+             <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+           <?php endif; ?>
          </div>
        </form>
        </div>
