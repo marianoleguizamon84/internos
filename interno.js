@@ -40,8 +40,9 @@ function interno(int){
 }
 
 function buscar(){
-  var valor = document.getElementById('buscar');
-  filtro = valor.value.toUpperCase();
+  var valor = document.getElementById('buscar').value;
+  valor = cadenaSimple(valor);
+  filtro = valor.toUpperCase();
   var intBool, userBool, sedeBool, obsBool;
   var tr = document.getElementsByTagName('tr');
   for (var i = 1; i < tr.length; i++) {
@@ -62,11 +63,21 @@ function buscar(){
 }
 
 function filtroBoolean(obj){
-  if (obj) {
-    if (obj.innerHTML.toUpperCase().indexOf(filtro) > -1) {
+    var cadena = obj.innerHTML;
+    cadena = cadenaSimple(cadena);
+    if (cadena.toUpperCase().indexOf(filtro) > -1) {
       return true;
     } else {
       return false;
     }
-  }
+}
+
+function cadenaSimple(texto){
+  texto = texto.replace(/á/gi,"a");
+  texto = texto.replace(/é/gi,"e");
+  texto = texto.replace(/í/gi,"i");
+  texto = texto.replace(/ó/gi,"o");
+  texto = texto.replace(/ú/gi,"u");
+  texto = texto.replace(/ñ/gi,"n");
+  return texto;
 }

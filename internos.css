@@ -72,6 +72,11 @@ thead{
   margin-top: 25px;
 }
 
+.cerrar {
+  height: 35px;
+  margin-right: 5px;
+}
+
 @media only screen and (max-width: 500px) {
   body{
     font-size: 2em;

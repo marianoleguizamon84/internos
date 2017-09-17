@@ -48,6 +48,7 @@ catch(PDOException $e)
       <input type="text" class="form-control" placeholder="Buscar interno, usuario, etc." onkeyup="buscar()" id="buscar">
       <?php if ($admin): ?>
         <button type="button" class="btn btn-default btn-lg" onclick="nuevo()" id="nuevo">Nuevo</button>
+        <a href="cerrar.php" class="btn btn-danger cerrar">Cerrar Session</a>
       <?php endif; ?>
     </div>
     <table class='table table-striped'>

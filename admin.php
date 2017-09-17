@@ -4,7 +4,8 @@ session_start();
 $admin = false;
 
 if (isset($_SESSION['user'])) {
-  $admin = true;
+  header('Location: ./index.php');
+  die();
 }
 
 if (isset($_POST['user']) && isset($_POST['pass'])) {
@@ -12,8 +13,6 @@ if (isset($_POST['user']) && isset($_POST['pass'])) {
   if ($admin) {
     $_SESSION['user'] = $_POST['user'];
     $_SESSION['pass'] = $_POST['pass'];
-    // header('Location: ./index.php');
-    // die();
   }
 }
  ?>
@@ -30,13 +29,6 @@ if (isset($_POST['user']) && isset($_POST['pass'])) {
      <link rel="stylesheet" href="internos.css">
    </head>
    <body>
-     <?php if ($admin): ?>
-       <!-- Si estas logueado -->
-       <span>Hola <?php echo $_SESSION['user']; ?></span><br>
-       <a href="index.php">Listado Internos</a><br>
-       <a href="cerrar.php">Cerrar Session</a><br>
-     <?php else: ?>
-       <!-- Si NO estas logueado -->
      <div class="">
        <form class="registro" action="admin.php" method="post">
          <div class="form-group">
@@ -51,6 +43,5 @@ if (isset($_POST['user']) && isset($_POST['pass'])) {
          <button class="btn btn-default" type="submit">Entrar</button>
        </form>
      </div>
-   <?php endif; ?>
    </body>
  </html>
