@@ -60,11 +60,17 @@ catch(PDOException $e)
           <th class="obs movil">Observaciones</th>
         </tr>
       </thead>
-      <?php foreach ($result as $value) {
-        if ($value['sede'] == 'Bs As') {
-          echo '<tr onclick="interno(' . $value['id'] . ')" class="BsAs">';
+      <?php
+      foreach ($result as $value) {
+        if ($admin) {
+          $click = 'onclick="interno(' . $value['id'] . ')"';
         } else {
-          echo '<tr onclick="interno(' . $value['id'] . ')" class="Pilar">';
+          $click = '';
+        }
+        if ($value['sede'] == 'Bs As') {
+          echo '<tr class="BsAs" '. $click .'>';
+        } else {
+          echo '<tr class="Pilar" '. $click .'>';
         }
         echo '<td class="filterable-cell interno">' . $value['interno'] . '</td>';
         echo '<td class="filterable-cell usuario">' . $value['usuario'] . '</td>';
@@ -76,6 +82,8 @@ catch(PDOException $e)
     </table>
 
     <!-- Modal -->
+    <?php if ($admin) { ?>
+      # code...
    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
      <div class="modal-dialog" role="document">
        <div class="modal-content">
@@ -108,16 +116,13 @@ catch(PDOException $e)
              </div>
          </div>
          <div class="modal-footer">
-           <?php if ($admin): ?>
              <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
              <button type="submit" class="btn btn-primary">Guardar</button>
-           <?php else: ?>
-             <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-           <?php endif; ?>
          </div>
        </form>
        </div>
      </div>
    </div>
+ <?php } ?>
   </body>
 </html>
