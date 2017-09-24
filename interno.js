@@ -17,6 +17,7 @@ function nuevo(){
   document.getElementById('sede').value = "";
   document.getElementById('observaciones').value = "";
   document.getElementById('myModalLabel').innerText = "Nuevo Interno";
+  document.getElementById('borrarBtn').style.display = 'none';
   $('#myModal').modal('toggle');
 }
 
@@ -32,7 +33,10 @@ function interno(int){
             document.getElementById('sede').value = objeto[0].sede;
             document.getElementById('observaciones').value = objeto[0].observaciones;
             document.getElementById('myModalLabel').innerText = "Editar Interno " + objeto[0].interno;
+            document.getElementById('borrarTitulo').innerText = "Desea borrar el interno " + objeto[0].interno + "?";
+            document.getElementById('borrarA').href = 'borrar.php?id=' + int;
             $('#myModal').modal('toggle');
+            document.getElementById('borrarBtn').style.display = 'inline';
         }
     };
     xmlhttp.open("GET", "interno.php?id="+int, true);
@@ -80,4 +84,14 @@ function cadenaSimple(texto){
   texto = texto.replace(/ú/gi,"u");
   texto = texto.replace(/ñ/gi,"n");
   return texto;
+}
+
+function borrar() {
+  $('#myModal').modal('hide');
+  $('#modalBorrar').modal('toggle');
+}
+
+function borrarCancelar() {
+  $('#modalBorrar').modal('hide');
+  $('#myModal').modal('toggle');
 }

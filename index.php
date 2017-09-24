@@ -1,14 +1,11 @@
 <?php
 require 'config.php';
-require 'function.php';
 session_start();
 $admin = false;
 
 if (isset($_SESSION['user'])) {
   $admin = true;
 }
-
-// die($admin);
 
 try {
     $conn = new PDO("mysql:host=$servername;dbname=$dbname; charset=UTF8", $username, $password);
@@ -83,7 +80,6 @@ catch(PDOException $e)
 
     <!-- Modal -->
     <?php if ($admin) { ?>
-      # code...
    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
      <div class="modal-dialog" role="document">
        <div class="modal-content">
@@ -95,34 +91,48 @@ catch(PDOException $e)
            <form class="formu" action="" method="post" id="formu">
              <div class="form-group">
                <label for="interno">Interno*</label>
-               <input type="number" class="form-control" placeholder="Interno" name="interno" value="" id="interno" min="1000" max="9999" required <?php echo !$admin ? "readonly" : "" ?>>
+               <input type="number" class="form-control" placeholder="Interno" name="interno" value="" id="interno" min="1000" max="9999" required>
              </div>
              <div class="form-group">
                <label for="usuario">Usuario*</label>
-               <input type="text" class="form-control" placeholder="Usuario" name="usuario" value="" id="usuario" required <?php echo !$admin ? "readonly" : "" ?>>
+               <input type="text" class="form-control" placeholder="Usuario" name="usuario" value="" id="usuario" required>
              </div>
              <div class="form-group">
                <label for="sede">Sede*</label>
-               <select class="form-control" name="sede" id="sede" required <?php echo !$admin ? "readonly" : "" ?>>
-                 <option value="Bs As" <?php echo !$admin ? 'disabled' : '' ?>>Bs As</option>
-                 <option value="Pilar" <?php echo !$admin ? 'disabled' : '' ?>>Pilar</option>
-                 <option value="FCB" <?php echo !$admin ? 'disabled' : '' ?>>FCB</option>
-                 <option value="Rosario" <?php echo !$admin ? 'disabled' : '' ?>>Rosario</option>
+               <select class="form-control" name="sede" id="sede" required>
+                 <option value="Bs As">Bs As</option>
+                 <option value="Pilar">Pilar</option>
+                 <option value="FCB">FCB</option>
+                 <option value="Rosario">Rosario</option>
                </select>
              </div>
              <div class="form-group">
                <label for="observaciones">Observaciones</label>
-               <input type="" class="form-control" placeholder="Observaciones" name="observaciones" value="" id="observaciones" <?php echo !$admin ? "readonly" : "" ?>>
+               <input type="" class="form-control" placeholder="Observaciones" name="observaciones" value="" id="observaciones">
              </div>
          </div>
          <div class="modal-footer">
-             <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+             <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+             <button type="button" class="btn btn-danger" onclick="borrar()" id="borrarBtn">Borrar</button>
              <button type="submit" class="btn btn-primary">Guardar</button>
          </div>
        </form>
        </div>
      </div>
    </div>
+
+   <div id="modalBorrar" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+     <div class="modal-dialog modal-sm" role="document">
+       <div class="modal-content">
+         <h3 class="borrarTitulo" id="borrarTitulo">Desde borrar el interno 123456789?</h3>
+         <div class="modal-footer">
+           <button type="button" name="button" class="btn btn-default" onclick="borrarCancelar()">Cancelar</button>
+           <a href="#" class="btn btn-danger" id="borrarA">Borrar</a>
+         </div>
+       </div>
+     </div>
+   </div>
+
  <?php } ?>
   </body>
 </html>

@@ -1,5 +1,4 @@
 <?php
-require 'function.php';
 session_start();
 $admin = false;
 
@@ -9,10 +8,15 @@ if (isset($_SESSION['user'])) {
 }
 
 if (isset($_POST['user']) && isset($_POST['pass'])) {
-  $admin = es_admin($_POST['user'], $_POST['pass']);
+  if ($_POST['user'] == 'admin' && $_POST['pass'] == 'admin') {
+    $admin = true;
+  } else {
+    $admin = false;
+  }
   if ($admin) {
     $_SESSION['user'] = $_POST['user'];
-    $_SESSION['pass'] = $_POST['pass'];
+    header('Location: ./index.php');
+    die();
   }
 }
  ?>

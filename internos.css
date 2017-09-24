@@ -77,6 +77,10 @@ thead{
   margin-right: 5px;
 }
 
+.borrarTitulo{
+  margin-left: 15px;
+}
+
 @media only screen and (max-width: 500px) {
   body{
     font-size: 2em;
