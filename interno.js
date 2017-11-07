@@ -2,6 +2,7 @@ window.onload = function(event){
   var tabla = document.getElementsByTagName('tbody');
   var largo = window.innerHeight - 160;
   tabla[0].style.height = largo + "px";
+  document.getElementById('buscar').focus();
 }
 
 window.onresize = function(event){
