@@ -34,10 +34,10 @@ function interno(int){
             document.getElementById('sede').value = objeto[0].sede;
             document.getElementById('observaciones').value = objeto[0].observaciones;
             document.getElementById('myModalLabel').innerText = "Editar Interno " + objeto[0].interno;
-            document.getElementById('borrarTitulo').innerText = "Desea borrar el interno " + objeto[0].interno + "?";
-            document.getElementById('borrarA').href = 'borrar.php?id=' + int;
+            // document.getElementById('borrarTitulo').innerText = "Desea borrar el interno " + objeto[0].interno + "?";
+            // document.getElementById('borrarA').href = 'borrar.php?id=' + int;
             $('#myModal').modal('toggle');
-            document.getElementById('borrarBtn').style.display = 'inline';
+            // document.getElementById('borrarBtn').style.display = 'inline';
         }
     };
     xmlhttp.open("GET", "interno.php?id="+int, true);

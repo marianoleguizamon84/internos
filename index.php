@@ -59,11 +59,11 @@ catch(PDOException $e)
       </thead>
       <?php
       foreach ($result as $value) {
-        if ($admin) {
+        // if ($admin) {
           $click = 'onclick="interno(' . $value['id'] . ')"';
-        } else {
-          $click = '';
-        }
+        // } else {
+          // $click = '';
+        // }
         if ($value['sede'] == 'Bs As') {
           echo '<tr class="BsAs" '. $click .'>';
         } else {
@@ -79,7 +79,6 @@ catch(PDOException $e)
     </table>
 
     <!-- Modal -->
-    <?php if ($admin) { ?>
    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
      <div class="modal-dialog" role="document">
        <div class="modal-content">
@@ -91,15 +90,15 @@ catch(PDOException $e)
            <form class="formu" action="" method="post" id="formu">
              <div class="form-group">
                <label for="interno">Interno*</label>
-               <input type="number" class="form-control" placeholder="Interno" name="interno" value="" id="interno" min="1000" max="9999" required>
+               <input type="number" class="form-control" placeholder="Interno" name="interno" value="" id="interno" min="1000" max="9999" required <?php echo !$admin ? 'readonly' : '' ?>>
              </div>
              <div class="form-group">
                <label for="usuario">Usuario*</label>
-               <input type="text" class="form-control" placeholder="Usuario" name="usuario" value="" id="usuario" required>
+               <input type="text" class="form-control" placeholder="Usuario" name="usuario" value="" id="usuario" required <?php echo !$admin ? 'readonly' : '' ?>>
              </div>
              <div class="form-group">
                <label for="sede">Sede*</label>
-               <select class="form-control" name="sede" id="sede" required>
+               <select class="form-control" name="sede" id="sede" required <?php echo !$admin ? 'readonly' : '' ?>>
                  <option value="Bs As">Bs As</option>
                  <option value="Pilar">Pilar</option>
                  <option value="FCB">FCB</option>
@@ -108,18 +107,26 @@ catch(PDOException $e)
              </div>
              <div class="form-group">
                <label for="observaciones">Observaciones</label>
-               <input type="" class="form-control" placeholder="Observaciones" name="observaciones" value="" id="observaciones">
+               <input type="" class="form-control" placeholder="Observaciones" name="observaciones" value="" id="observaciones" <?php echo !$admin ? 'readonly' : '' ?>>
              </div>
          </div>
+         <?php if ($admin) { ?>
+
          <div class="modal-footer">
              <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
              <button type="button" class="btn btn-danger" onclick="borrar()" id="borrarBtn">Borrar</button>
              <button type="submit" class="btn btn-primary">Guardar</button>
          </div>
+
+         <?php } ?>
+
        </form>
        </div>
      </div>
    </div>
+
+   <?php if ($admin) { ?>
+
 
    <div id="modalBorrar" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
      <div class="modal-dialog modal-sm" role="document">
