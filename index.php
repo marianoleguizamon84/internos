@@ -90,7 +90,7 @@ catch(PDOException $e)
            <form class="formu" action="" method="post" id="formu">
              <div class="form-group">
                <label for="interno">Interno*</label>
-               <input type="number" class="form-control" placeholder="Interno" name="interno" value="" id="interno" min="1000" max="9999" required <?php echo !$admin ? 'readonly' : '' ?>>
+               <input type="text" class="form-control" placeholder="Interno" name="interno" value="" id="interno" required <?php echo !$admin ? 'readonly' : '' ?>>
              </div>
              <div class="form-group">
                <label for="usuario">Usuario*</label>
