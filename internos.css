@@ -1,3 +1,11 @@
+.superior{
+  text-align: right;
+  margin-top: 5px;
+}
+
+.superior a{
+  margin-right: 10px;
+}
 
 h1{
   text-align: center;
@@ -22,6 +30,15 @@ h1{
   height: 35px;
   padding: 0px 15px;
   margin-right: 5px;
+}
+
+.nuevo{
+  border-radius: 50px;
+  font-size: 20px;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  /* color: blue; */
 }
 
 /*Titulo Fijo*/

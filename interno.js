@@ -1,13 +1,15 @@
 window.onload = function(event){
   var tabla = document.getElementsByTagName('tbody');
-  var largo = window.innerHeight - 160;
+  // var sum = $(".superior").height() + $("h1").height() + $(".botonera").height();
+  var largo = window.innerHeight - 190;
+  //Porque 190
   tabla[0].style.height = largo + "px";
   document.getElementById('buscar').focus();
 }
 
 window.onresize = function(event){
   var tabla = document.getElementsByTagName('tbody');
-  var largo = window.innerHeight - 160;
+  var largo = window.innerHeight - 190;
   tabla[0].style.height = largo + "px";
 }
 

@@ -29,6 +29,7 @@ catch(PDOException $e)
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
+
     <!-- Optional theme -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 
@@ -40,14 +41,21 @@ catch(PDOException $e)
     <title>Listado Internos</title>
   </head>
   <body>
+    <nav class="superior">
+      <?php if ($admin) {
+        echo $_SESSION['user'] . " | " ?> <a href="cerrar.php">Cerrar Session</a>
+      <?php } else {?>
+        <a href="./admin.php">Ingresar</a>
+      <?php } ?>
+    </nav>
     <h1><a href="index.php">Listado Internos</a></h1>
     <div class="botonera">
       <input type="text" class="form-control" placeholder="Buscar interno, usuario, etc." onkeyup="buscar()" id="buscar">
-      <?php if ($admin): ?>
-        <button type="button" class="btn btn-default btn-lg" onclick="nuevo()" id="nuevo">Nuevo</button>
-        <a href="cerrar.php" class="btn btn-danger cerrar">Cerrar Session</a>
-      <?php endif; ?>
     </div>
+      <?php if ($admin): ?>
+        <button type="button" class="btn btn-primary btn-lg nuevo" onclick="nuevo()" id="nuevo"><span class="glyphicon glyphicon-plus"></span></button>
+        <!-- <a href="cerrar.php" class="btn btn-danger cerrar">Cerrar Session</a> -->
+      <?php endif; ?>
     <table class='table table-striped'>
       <thead>
         <tr>
